@@ -1,0 +1,20 @@
+name = "UniDist"
+uuid = "22f7d25a-af56-4830-9f7c-4430dd01f1ac"
+version = "0.1.0"
+
+authors = ["Resul Akay <resul.akay@taf-society.org> and contributors"]
+
+[deps]
+QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+
+[compat]
+julia = "1.10"
+QuadGK = "2"
+SpecialFunctions = "2"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
