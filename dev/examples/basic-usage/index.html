@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Basic Usage · UniDist.jl</title><meta name="title" content="Basic Usage · UniDist.jl"/><meta property="og:title" content="Basic Usage · UniDist.jl"/><meta property="twitter:title" content="Basic Usage · UniDist.jl"/><meta name="description" content="Documentation for UniDist.jl."/><meta property="og:description" content="Documentation for UniDist.jl."/><meta property="twitter:description" content="Documentation for UniDist.jl."/><meta property="og:url" content="https://Akai01.github.io/UniDist.jl/examples/basic-usage/"/><meta property="twitter:url" content="https://Akai01.github.io/UniDist.jl/examples/basic-usage/"/><link rel="canonical" href="https://Akai01.github.io/UniDist.jl/examples/basic-usage/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">UniDist.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../getting-started/">Getting Started</a></li><li><span class="tocitem">Distributions</span><ul><li><a class="tocitem" href="../../distributions/continuous/">Continuous Distributions</a></li><li><a class="tocitem" href="../../distributions/discrete/">Discrete Distributions</a></li></ul></li><li><span class="tocitem">API Reference</span><ul><li><a class="tocitem" href="../../api/core/">Core Functions</a></li><li><a class="tocitem" href="../../api/survival/">Survival Analysis</a></li><li><a class="tocitem" href="../../api/intervals/">Statistical Intervals</a></li></ul></li><li><span class="tocitem">Examples</span><ul><li class="is-active"><a class="tocitem" href>Basic Usage</a><ul class="internal"><li><a class="tocitem" href="#Creating-and-Using-Distributions"><span>Creating and Using Distributions</span></a></li><li><a class="tocitem" href="#Computing-Multiple-Values"><span>Computing Multiple Values</span></a></li><li><a class="tocitem" href="#Distribution-Properties"><span>Distribution Properties</span></a></li><li><a class="tocitem" href="#Probability-Calculations"><span>Probability Calculations</span></a></li><li><a class="tocitem" href="#Working-with-Discrete-Distributions"><span>Working with Discrete Distributions</span></a></li><li><a class="tocitem" href="#Random-Sampling"><span>Random Sampling</span></a></li><li><a class="tocitem" href="#Combining-Operations"><span>Combining Operations</span></a></li></ul></li><li><a class="tocitem" href="../vectorized/">Vectorized Operations</a></li><li><a class="tocitem" href="../statistical-analysis/">Statistical Analysis</a></li><li><a class="tocitem" href="../bayesian/">Bayesian Inference</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Basic Usage</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Basic Usage</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl/blob/master/docs/src/examples/basic-usage.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="basic-usage"><a class="docs-heading-anchor" href="#basic-usage">Basic Usage</a><a id="basic-usage-1"></a><a class="docs-heading-anchor-permalink" href="#basic-usage" title="Permalink"></a></h1><p>This page demonstrates fundamental usage patterns for UniDist.jl.</p><h2 id="Creating-and-Using-Distributions"><a class="docs-heading-anchor" href="#Creating-and-Using-Distributions">Creating and Using Distributions</a><a id="Creating-and-Using-Distributions-1"></a><a class="docs-heading-anchor-permalink" href="#Creating-and-Using-Distributions" title="Permalink"></a></h2><h3 id="Example-1:-Working-with-Normal-Distribution"><a class="docs-heading-anchor" href="#Example-1:-Working-with-Normal-Distribution">Example 1: Working with Normal Distribution</a><a id="Example-1:-Working-with-Normal-Distribution-1"></a><a class="docs-heading-anchor-permalink" href="#Example-1:-Working-with-Normal-Distribution" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Create a Normal distribution
+d = Normal(100, 15)  # IQ scores: mean=100, sd=15
+
+# What percentage of people have IQ &gt; 130?
+1 - cdf(d, 130)       # ≈ 0.0228 (about 2.3%)
+
+# What percentage have IQ between 85 and 115?
+cdf(d, 115) - cdf(d, 85)  # ≈ 0.683 (about 68%)
+
+# What IQ score is at the 99th percentile?
+quantile(d, 0.99)     # ≈ 134.9
+
+# Generate 10 random IQ scores
+r(d, 10)</code></pre><h3 id="Example-2:-Quality-Control-with-Binomial"><a class="docs-heading-anchor" href="#Example-2:-Quality-Control-with-Binomial">Example 2: Quality Control with Binomial</a><a id="Example-2:-Quality-Control-with-Binomial-1"></a><a class="docs-heading-anchor-permalink" href="#Example-2:-Quality-Control-with-Binomial" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# A factory produces items with 2% defect rate
+# In a batch of 100 items, what&#39;s the probability of finding:
+
+d = Binomial(100, 0.02)
+
+# Exactly 2 defects?
+pdf(d, 2)             # ≈ 0.273
+
+# At most 3 defects?
+cdf(d, 3)             # ≈ 0.858
+
+# More than 5 defects? (reject the batch)
+1 - cdf(d, 5)         # ≈ 0.015
+
+# Expected number of defects
+mean(d)               # 2.0</code></pre><h3 id="Example-3:-Waiting-Times-with-Exponential"><a class="docs-heading-anchor" href="#Example-3:-Waiting-Times-with-Exponential">Example 3: Waiting Times with Exponential</a><a id="Example-3:-Waiting-Times-with-Exponential-1"></a><a class="docs-heading-anchor-permalink" href="#Example-3:-Waiting-Times-with-Exponential" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Customers arrive on average every 5 minutes
+d = Exponential(5.0)
+
+# Probability of waiting more than 10 minutes
+sf(d, 10)             # ≈ 0.135
+
+# Probability of waiting less than 2 minutes
+cdf(d, 2)             # ≈ 0.330
+
+# Median waiting time
+quantile(d, 0.5)      # ≈ 3.47 minutes</code></pre><hr/><h2 id="Computing-Multiple-Values"><a class="docs-heading-anchor" href="#Computing-Multiple-Values">Computing Multiple Values</a><a id="Computing-Multiple-Values-1"></a><a class="docs-heading-anchor-permalink" href="#Computing-Multiple-Values" title="Permalink"></a></h2><h3 id="Batch-Probability-Calculations"><a class="docs-heading-anchor" href="#Batch-Probability-Calculations">Batch Probability Calculations</a><a id="Batch-Probability-Calculations-1"></a><a class="docs-heading-anchor-permalink" href="#Batch-Probability-Calculations" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Normal(0, 1)
+
+# PDF at multiple points
+xs = -3:0.5:3
+densities = pdf(d, collect(xs))
+
+# Print as a table
+println(&quot;x\t\tpdf(x)&quot;)
+for (x, p) in zip(xs, densities)
+    println(&quot;$x\t\t$(round(p, digits=4))&quot;)
+end</code></pre><h3 id="Multiple-Quantiles"><a class="docs-heading-anchor" href="#Multiple-Quantiles">Multiple Quantiles</a><a id="Multiple-Quantiles-1"></a><a class="docs-heading-anchor-permalink" href="#Multiple-Quantiles" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Normal(100, 15)
+
+# Common percentiles
+percentiles = [0.01, 0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95, 0.99]
+values = quantile(d, percentiles)
+
+println(&quot;Percentile\tValue&quot;)
+for (p, v) in zip(percentiles, values)
+    println(&quot;$(Int(p*100))%\t\t$(round(v, digits=1))&quot;)
+end</code></pre><hr/><h2 id="Distribution-Properties"><a class="docs-heading-anchor" href="#Distribution-Properties">Distribution Properties</a><a id="Distribution-Properties-1"></a><a class="docs-heading-anchor-permalink" href="#Distribution-Properties" title="Permalink"></a></h2><h3 id="Summary-Statistics"><a class="docs-heading-anchor" href="#Summary-Statistics">Summary Statistics</a><a id="Summary-Statistics-1"></a><a class="docs-heading-anchor-permalink" href="#Summary-Statistics" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+distributions = [
+    (&quot;Normal(0,1)&quot;, Normal(0, 1)),
+    (&quot;Exponential(2)&quot;, Exponential(2)),
+    (&quot;Gamma(2,3)&quot;, Gamma(2, 3)),
+    (&quot;Beta(2,5)&quot;, Beta(2, 5)),
+]
+
+println(&quot;Distribution\t\tMean\tVariance\tSupport&quot;)
+for (name, d) in distributions
+    m = round(mean(d), digits=3)
+    v = round(var(d), digits=3)
+    s = support(d)
+    println(&quot;$name\t\t$m\t$v\t\t$s&quot;)
+end</code></pre><hr/><h2 id="Probability-Calculations"><a class="docs-heading-anchor" href="#Probability-Calculations">Probability Calculations</a><a id="Probability-Calculations-1"></a><a class="docs-heading-anchor-permalink" href="#Probability-Calculations" title="Permalink"></a></h2><h3 id="Finding-Probabilities"><a class="docs-heading-anchor" href="#Finding-Probabilities">Finding Probabilities</a><a id="Finding-Probabilities-1"></a><a class="docs-heading-anchor-permalink" href="#Finding-Probabilities" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Exam scores follow Normal(75, 10)
+scores = Normal(75, 10)
+
+# P(score ≥ 90) - probability of an A
+prob_A = 1 - cdf(scores, 90)
+println(&quot;P(A grade): $(round(prob_A * 100, digits=1))%&quot;)
+
+# P(60 ≤ score &lt; 70) - probability of a D
+prob_D = cdf(scores, 70) - cdf(scores, 60)
+println(&quot;P(D grade): $(round(prob_D * 100, digits=1))%&quot;)
+
+# P(score &lt; 50) - probability of failing
+prob_fail = cdf(scores, 50)
+println(&quot;P(Fail): $(round(prob_fail * 100, digits=1))%&quot;)</code></pre><h3 id="Inverse-Problems"><a class="docs-heading-anchor" href="#Inverse-Problems">Inverse Problems</a><a id="Inverse-Problems-1"></a><a class="docs-heading-anchor-permalink" href="#Inverse-Problems" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# What score do you need to be in the top 10%?
+scores = Normal(75, 10)
+top_10_cutoff = quantile(scores, 0.90)
+println(&quot;Top 10% cutoff: $(round(top_10_cutoff, digits=1))&quot;)
+
+# What score is the median?
+median_score = quantile(scores, 0.50)
+println(&quot;Median score: $median_score&quot;)</code></pre><hr/><h2 id="Working-with-Discrete-Distributions"><a class="docs-heading-anchor" href="#Working-with-Discrete-Distributions">Working with Discrete Distributions</a><a id="Working-with-Discrete-Distributions-1"></a><a class="docs-heading-anchor-permalink" href="#Working-with-Discrete-Distributions" title="Permalink"></a></h2><h3 id="Dice-Rolling"><a class="docs-heading-anchor" href="#Dice-Rolling">Dice Rolling</a><a id="Dice-Rolling-1"></a><a class="docs-heading-anchor-permalink" href="#Dice-Rolling" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Fair die
+die = DiscreteUniform(1, 6)
+
+# Probability of rolling a 6
+pdf(die, 6)           # ≈ 0.167
+
+# Probability of rolling ≤ 3
+cdf(die, 3)           # 0.5
+
+# Expected value
+mean(die)             # 3.5</code></pre><h3 id="Counting-Successes"><a class="docs-heading-anchor" href="#Counting-Successes">Counting Successes</a><a id="Counting-Successes-1"></a><a class="docs-heading-anchor-permalink" href="#Counting-Successes" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Flip a fair coin 10 times
+flips = Binomial(10, 0.5)
+
+# Probability of exactly 5 heads
+pdf(flips, 5)         # ≈ 0.246
+
+# Probability of at least 7 heads
+1 - cdf(flips, 6)     # ≈ 0.172
+
+# Most likely outcome
+# (find k that maximizes pdf)
+probs = [pdf(flips, k) for k in 0:10]
+mode = argmax(probs) - 1  # 5</code></pre><hr/><h2 id="Random-Sampling"><a class="docs-heading-anchor" href="#Random-Sampling">Random Sampling</a><a id="Random-Sampling-1"></a><a class="docs-heading-anchor-permalink" href="#Random-Sampling" title="Permalink"></a></h2><h3 id="Basic-Sampling"><a class="docs-heading-anchor" href="#Basic-Sampling">Basic Sampling</a><a id="Basic-Sampling-1"></a><a class="docs-heading-anchor-permalink" href="#Basic-Sampling" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Normal(0, 1)
+
+# Single sample
+x = r(d)
+
+# Multiple samples
+samples = r(d, 1000)
+
+# Sample statistics
+sample_mean = sum(samples) / length(samples)
+sample_var = sum((x - sample_mean)^2 for x in samples) / (length(samples) - 1)
+
+println(&quot;Sample mean: $(round(sample_mean, digits=3)) (true: 0)&quot;)
+println(&quot;Sample var: $(round(sample_var, digits=3)) (true: 1)&quot;)</code></pre><h3 id="Reproducible-Sampling"><a class="docs-heading-anchor" href="#Reproducible-Sampling">Reproducible Sampling</a><a id="Reproducible-Sampling-1"></a><a class="docs-heading-anchor-permalink" href="#Reproducible-Sampling" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+using Random
+
+d = Normal(0, 1)
+
+# Set seed for reproducibility
+rng = MersenneTwister(42)
+
+# These will always be the same
+samples1 = r(d, 5; rng=MersenneTwister(42))
+samples2 = r(d, 5; rng=MersenneTwister(42))
+
+samples1 == samples2  # true</code></pre><hr/><h2 id="Combining-Operations"><a class="docs-heading-anchor" href="#Combining-Operations">Combining Operations</a><a id="Combining-Operations-1"></a><a class="docs-heading-anchor-permalink" href="#Combining-Operations" title="Permalink"></a></h2><h3 id="Monte-Carlo-Estimation"><a class="docs-heading-anchor" href="#Monte-Carlo-Estimation">Monte Carlo Estimation</a><a id="Monte-Carlo-Estimation-1"></a><a class="docs-heading-anchor-permalink" href="#Monte-Carlo-Estimation" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Estimate P(X &gt; Y) where X ~ Normal(5, 2), Y ~ Normal(4, 1)
+X = Normal(5, 2)
+Y = Normal(4, 1)
+
+n = 100000
+x_samples = r(X, n)
+y_samples = r(Y, n)
+
+prob_x_greater = sum(x_samples .&gt; y_samples) / n
+println(&quot;P(X &gt; Y) ≈ $(round(prob_x_greater, digits=3))&quot;)</code></pre><h3 id="Distribution-Comparison"><a class="docs-heading-anchor" href="#Distribution-Comparison">Distribution Comparison</a><a id="Distribution-Comparison-1"></a><a class="docs-heading-anchor-permalink" href="#Distribution-Comparison" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Compare Poisson and Normal approximation
+λ = 50
+poisson = Poisson(λ)
+normal_approx = Normal(λ, sqrt(λ))
+
+# Compare CDFs at various points
+points = [40, 45, 50, 55, 60]
+println(&quot;x\tPoisson\t\tNormal&quot;)
+for x in points
+    p_pois = round(cdf(poisson, x), digits=4)
+    p_norm = round(cdf(normal_approx, x), digits=4)
+    println(&quot;$x\t$p_pois\t\t$p_norm&quot;)
+end</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../api/intervals/">« Statistical Intervals</a><a class="docs-footer-nextpage" href="../vectorized/">Vectorized Operations »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.16.1 on <span class="colophon-date" title="Wednesday 21 January 2026 23:32">Wednesday 21 January 2026</span>. Using Julia version 1.12.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

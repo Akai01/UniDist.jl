@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Vectorized Operations · UniDist.jl</title><meta name="title" content="Vectorized Operations · UniDist.jl"/><meta property="og:title" content="Vectorized Operations · UniDist.jl"/><meta property="twitter:title" content="Vectorized Operations · UniDist.jl"/><meta name="description" content="Documentation for UniDist.jl."/><meta property="og:description" content="Documentation for UniDist.jl."/><meta property="twitter:description" content="Documentation for UniDist.jl."/><meta property="og:url" content="https://Akai01.github.io/UniDist.jl/examples/vectorized/"/><meta property="twitter:url" content="https://Akai01.github.io/UniDist.jl/examples/vectorized/"/><link rel="canonical" href="https://Akai01.github.io/UniDist.jl/examples/vectorized/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">UniDist.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../getting-started/">Getting Started</a></li><li><span class="tocitem">Distributions</span><ul><li><a class="tocitem" href="../../distributions/continuous/">Continuous Distributions</a></li><li><a class="tocitem" href="../../distributions/discrete/">Discrete Distributions</a></li></ul></li><li><span class="tocitem">API Reference</span><ul><li><a class="tocitem" href="../../api/core/">Core Functions</a></li><li><a class="tocitem" href="../../api/survival/">Survival Analysis</a></li><li><a class="tocitem" href="../../api/intervals/">Statistical Intervals</a></li></ul></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../basic-usage/">Basic Usage</a></li><li class="is-active"><a class="tocitem" href>Vectorized Operations</a><ul class="internal"><li><a class="tocitem" href="#Vectorized-Distribution-Parameters"><span>Vectorized Distribution Parameters</span></a></li><li><a class="tocitem" href="#Vectorized-Evaluation-Points"><span>Vectorized Evaluation Points</span></a></li><li><a class="tocitem" href="#Combining-Vectorized-Parameters-and-Points"><span>Combining Vectorized Parameters and Points</span></a></li><li><a class="tocitem" href="#Practical-Applications"><span>Practical Applications</span></a></li><li><a class="tocitem" href="#Performance-Tips"><span>Performance Tips</span></a></li><li><a class="tocitem" href="#Working-with-Arrays"><span>Working with Arrays</span></a></li></ul></li><li><a class="tocitem" href="../statistical-analysis/">Statistical Analysis</a></li><li><a class="tocitem" href="../bayesian/">Bayesian Inference</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Vectorized Operations</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Vectorized Operations</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl/blob/master/docs/src/examples/vectorized.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="vectorized-operations"><a class="docs-heading-anchor" href="#vectorized-operations">Vectorized Operations</a><a id="vectorized-operations-1"></a><a class="docs-heading-anchor-permalink" href="#vectorized-operations" title="Permalink"></a></h1><p>UniDist.jl supports vectorized parameters, allowing efficient batch computations across multiple distribution configurations.</p><h2 id="Vectorized-Distribution-Parameters"><a class="docs-heading-anchor" href="#Vectorized-Distribution-Parameters">Vectorized Distribution Parameters</a><a id="Vectorized-Distribution-Parameters-1"></a><a class="docs-heading-anchor-permalink" href="#Vectorized-Distribution-Parameters" title="Permalink"></a></h2><h3 id="Multiple-Means"><a class="docs-heading-anchor" href="#Multiple-Means">Multiple Means</a><a id="Multiple-Means-1"></a><a class="docs-heading-anchor-permalink" href="#Multiple-Means" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Create Normal distributions with different means
+# All with σ = 1
+d = Normal([0.0, 1.0, 2.0, 3.0], 1.0)
+
+# Evaluate PDF at x = 1 for all distributions
+pdf(d, 1.0)
+# Returns: [0.242, 0.399, 0.242, 0.054]
+# (density at x=1 for each mean)</code></pre><h3 id="Multiple-Standard-Deviations"><a class="docs-heading-anchor" href="#Multiple-Standard-Deviations">Multiple Standard Deviations</a><a id="Multiple-Standard-Deviations-1"></a><a class="docs-heading-anchor-permalink" href="#Multiple-Standard-Deviations" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Normal(0, σ) for different σ values
+d = Normal(0.0, [0.5, 1.0, 2.0, 4.0])
+
+# Compare densities at x = 0
+pdf(d, 0.0)
+# Higher density for smaller σ (more concentrated)</code></pre><h3 id="Grid-of-Parameters"><a class="docs-heading-anchor" href="#Grid-of-Parameters">Grid of Parameters</a><a id="Grid-of-Parameters-1"></a><a class="docs-heading-anchor-permalink" href="#Grid-of-Parameters" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Create a grid of Beta distributions
+αs = [0.5, 1.0, 2.0, 5.0]
+βs = [0.5, 1.0, 2.0, 5.0]
+
+# Evaluate mean for each combination
+for α in αs
+    for β in βs
+        d = Beta(α, β)
+        m = mean(d)
+        println(&quot;Beta($α, $β): mean = $(round(m, digits=3))&quot;)
+    end
+end</code></pre><hr/><h2 id="Vectorized-Evaluation-Points"><a class="docs-heading-anchor" href="#Vectorized-Evaluation-Points">Vectorized Evaluation Points</a><a id="Vectorized-Evaluation-Points-1"></a><a class="docs-heading-anchor-permalink" href="#Vectorized-Evaluation-Points" title="Permalink"></a></h2><h3 id="PDF-at-Multiple-Points"><a class="docs-heading-anchor" href="#PDF-at-Multiple-Points">PDF at Multiple Points</a><a id="PDF-at-Multiple-Points-1"></a><a class="docs-heading-anchor-permalink" href="#PDF-at-Multiple-Points" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Normal(0, 1)
+
+# Evaluate at many points simultaneously
+xs = range(-4, 4, length=100)
+densities = pdf(d, collect(xs))
+
+# Find the maximum density
+max_density = maximum(densities)
+max_idx = argmax(densities)
+println(&quot;Maximum density $(round(max_density, digits=4)) at x = $(xs[max_idx])&quot;)</code></pre><h3 id="CDF-at-Multiple-Points"><a class="docs-heading-anchor" href="#CDF-at-Multiple-Points">CDF at Multiple Points</a><a id="CDF-at-Multiple-Points-1"></a><a class="docs-heading-anchor-permalink" href="#CDF-at-Multiple-Points" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Exponential(5.0)
+
+# Compute survival curve
+times = [0, 1, 2, 5, 10, 20, 50]
+survival_probs = sf(d, times)
+
+println(&quot;Time\tSurvival Probability&quot;)
+for (t, s) in zip(times, survival_probs)
+    println(&quot;$t\t$(round(s * 100, digits=1))%&quot;)
+end</code></pre><h3 id="Multiple-Quantiles"><a class="docs-heading-anchor" href="#Multiple-Quantiles">Multiple Quantiles</a><a id="Multiple-Quantiles-1"></a><a class="docs-heading-anchor-permalink" href="#Multiple-Quantiles" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Normal(100, 15)
+
+# Compute percentile table
+percentiles = 0.01:0.01:0.99
+values = quantile(d, collect(percentiles))
+
+# Find specific percentiles
+p25 = quantile(d, 0.25)
+p50 = quantile(d, 0.50)
+p75 = quantile(d, 0.75)
+
+println(&quot;Q1: $p25, Median: $p50, Q3: $p75&quot;)
+println(&quot;IQR: $(p75 - p25)&quot;)</code></pre><hr/><h2 id="Combining-Vectorized-Parameters-and-Points"><a class="docs-heading-anchor" href="#Combining-Vectorized-Parameters-and-Points">Combining Vectorized Parameters and Points</a><a id="Combining-Vectorized-Parameters-and-Points-1"></a><a class="docs-heading-anchor-permalink" href="#Combining-Vectorized-Parameters-and-Points" title="Permalink"></a></h2><h3 id="Full-Grid-Evaluation"><a class="docs-heading-anchor" href="#Full-Grid-Evaluation">Full Grid Evaluation</a><a id="Full-Grid-Evaluation-1"></a><a class="docs-heading-anchor-permalink" href="#Full-Grid-Evaluation" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Different exponential rates
+rates = [0.5, 1.0, 2.0]
+times = [0.5, 1.0, 2.0, 5.0]
+
+println(&quot;Survival probabilities S(t) = P(T &gt; t)&quot;)
+println(&quot;\nTime\tλ=0.5\tλ=1.0\tλ=2.0&quot;)
+
+for t in times
+    probs = [round(sf(Exponential(1/λ), t), digits=3) for λ in rates]
+    println(&quot;$t\t$(probs[1])\t$(probs[2])\t$(probs[3])&quot;)
+end</code></pre><hr/><h2 id="Practical-Applications"><a class="docs-heading-anchor" href="#Practical-Applications">Practical Applications</a><a id="Practical-Applications-1"></a><a class="docs-heading-anchor-permalink" href="#Practical-Applications" title="Permalink"></a></h2><h3 id="Sensitivity-Analysis"><a class="docs-heading-anchor" href="#Sensitivity-Analysis">Sensitivity Analysis</a><a id="Sensitivity-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Sensitivity-Analysis" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# How does changing parameters affect the 95th percentile?
+base_mean = 100
+base_sd = 15
+
+# Vary mean
+means = 90:5:110
+for μ in means
+    d = Normal(μ, base_sd)
+    p95 = quantile(d, 0.95)
+    println(&quot;μ=$μ: 95th percentile = $(round(p95, digits=1))&quot;)
+end
+
+println()
+
+# Vary standard deviation
+sds = 10:2:20
+for σ in sds
+    d = Normal(base_mean, σ)
+    p95 = quantile(d, 0.95)
+    println(&quot;σ=$σ: 95th percentile = $(round(p95, digits=1))&quot;)
+end</code></pre><h3 id="Comparing-Distribution-Families"><a class="docs-heading-anchor" href="#Comparing-Distribution-Families">Comparing Distribution Families</a><a id="Comparing-Distribution-Families-1"></a><a class="docs-heading-anchor-permalink" href="#Comparing-Distribution-Families" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Compare different distributions with same mean and variance
+# Mean = 5, Variance = 5
+
+distributions = [
+    (&quot;Gamma&quot;, Gamma(5, 1)),           # shape=5, scale=1 → mean=5, var=5
+    (&quot;Normal&quot;, Normal(5, sqrt(5))),   # mean=5, var=5
+]
+
+x_vals = 0:0.5:15
+
+println(&quot;x\tGamma\t\tNormal&quot;)
+for x in x_vals
+    vals = [round(pdf(d, x), digits=4) for (_, d) in distributions]
+    println(&quot;$x\t$(vals[1])\t\t$(vals[2])&quot;)
+end</code></pre><h3 id="Batch-Risk-Calculations"><a class="docs-heading-anchor" href="#Batch-Risk-Calculations">Batch Risk Calculations</a><a id="Batch-Risk-Calculations-1"></a><a class="docs-heading-anchor-permalink" href="#Batch-Risk-Calculations" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Calculate Value at Risk (VaR) for different confidence levels
+# Returns follow Normal(0.05, 0.20) - 5% expected return, 20% volatility
+
+returns = Normal(0.05, 0.20)
+confidence_levels = [0.90, 0.95, 0.99]
+
+println(&quot;VaR at different confidence levels:&quot;)
+for α in confidence_levels
+    var = -quantile(returns, 1 - α)
+    println(&quot;$(Int(α*100))% VaR: $(round(var * 100, digits=2))%&quot;)
+end</code></pre><hr/><h2 id="Performance-Tips"><a class="docs-heading-anchor" href="#Performance-Tips">Performance Tips</a><a id="Performance-Tips-1"></a><a class="docs-heading-anchor-permalink" href="#Performance-Tips" title="Permalink"></a></h2><h3 id="Pre-allocating-Results"><a class="docs-heading-anchor" href="#Pre-allocating-Results">Pre-allocating Results</a><a id="Pre-allocating-Results-1"></a><a class="docs-heading-anchor-permalink" href="#Pre-allocating-Results" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+d = Normal(0, 1)
+n = 10000
+xs = randn(n)
+
+# Efficient: single vectorized call
+result = pdf(d, xs)</code></pre><h3 id="Avoiding-Repeated-Distribution-Creation"><a class="docs-heading-anchor" href="#Avoiding-Repeated-Distribution-Creation">Avoiding Repeated Distribution Creation</a><a id="Avoiding-Repeated-Distribution-Creation-1"></a><a class="docs-heading-anchor-permalink" href="#Avoiding-Repeated-Distribution-Creation" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Less efficient: creating distribution in loop
+function slow_version(means, x)
+    [pdf(Normal(μ, 1), x) for μ in means]
+end
+
+# More efficient: vectorized parameters
+function fast_version(means, x)
+    d = Normal(means, 1)
+    pdf(d, x)
+end</code></pre><hr/><h2 id="Working-with-Arrays"><a class="docs-heading-anchor" href="#Working-with-Arrays">Working with Arrays</a><a id="Working-with-Arrays-1"></a><a class="docs-heading-anchor-permalink" href="#Working-with-Arrays" title="Permalink"></a></h2><h3 id="Element-wise-Operations"><a class="docs-heading-anchor" href="#Element-wise-Operations">Element-wise Operations</a><a id="Element-wise-Operations-1"></a><a class="docs-heading-anchor-permalink" href="#Element-wise-Operations" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Array of different distribution types
+distributions = [Normal(0, 1), Normal(0, 2), Normal(1, 1)]
+
+# Evaluate each at x = 0.5
+results = [pdf(d, 0.5) for d in distributions]
+
+# Or using broadcasting syntax
+x = 0.5
+results = pdf.(distributions, x)</code></pre><h3 id="Matrix-of-Probabilities"><a class="docs-heading-anchor" href="#Matrix-of-Probabilities">Matrix of Probabilities</a><a id="Matrix-of-Probabilities-1"></a><a class="docs-heading-anchor-permalink" href="#Matrix-of-Probabilities" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Create probability matrix
+# Rows: different distributions
+# Columns: different x values
+
+dists = [Normal(0, 1), Normal(0, 2), Exponential(1)]
+xs = [0.0, 0.5, 1.0, 2.0]
+
+prob_matrix = [pdf(d, x) for d in dists, x in xs]
+
+# Display as table
+println(&quot;Distribution\t&quot;, join(xs, &quot;\t&quot;))
+for (i, d) in enumerate([&quot;N(0,1)&quot;, &quot;N(0,2)&quot;, &quot;Exp(1)&quot;])
+    row = [round(prob_matrix[i, j], digits=3) for j in 1:length(xs)]
+    println(&quot;$d\t\t&quot;, join(row, &quot;\t&quot;))
+end</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../basic-usage/">« Basic Usage</a><a class="docs-footer-nextpage" href="../statistical-analysis/">Statistical Analysis »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.16.1 on <span class="colophon-date" title="Wednesday 21 January 2026 23:32">Wednesday 21 January 2026</span>. Using Julia version 1.12.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

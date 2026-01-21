@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Survival Analysis · UniDist.jl</title><meta name="title" content="Survival Analysis · UniDist.jl"/><meta property="og:title" content="Survival Analysis · UniDist.jl"/><meta property="twitter:title" content="Survival Analysis · UniDist.jl"/><meta name="description" content="Documentation for UniDist.jl."/><meta property="og:description" content="Documentation for UniDist.jl."/><meta property="twitter:description" content="Documentation for UniDist.jl."/><meta property="og:url" content="https://Akai01.github.io/UniDist.jl/api/survival/"/><meta property="twitter:url" content="https://Akai01.github.io/UniDist.jl/api/survival/"/><link rel="canonical" href="https://Akai01.github.io/UniDist.jl/api/survival/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">UniDist.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../getting-started/">Getting Started</a></li><li><span class="tocitem">Distributions</span><ul><li><a class="tocitem" href="../../distributions/continuous/">Continuous Distributions</a></li><li><a class="tocitem" href="../../distributions/discrete/">Discrete Distributions</a></li></ul></li><li><span class="tocitem">API Reference</span><ul><li><a class="tocitem" href="../core/">Core Functions</a></li><li class="is-active"><a class="tocitem" href>Survival Analysis</a><ul class="internal"><li><a class="tocitem" href="#Overview"><span>Overview</span></a></li><li><a class="tocitem" href="#Survival-Function"><span>Survival Function</span></a></li><li><a class="tocitem" href="#Hazard-Function"><span>Hazard Function</span></a></li><li><a class="tocitem" href="#Cumulative-Hazard-Function"><span>Cumulative Hazard Function</span></a></li><li><a class="tocitem" href="#Practical-Applications"><span>Practical Applications</span></a></li><li><a class="tocitem" href="#Vectorized-Operations"><span>Vectorized Operations</span></a></li><li><a class="tocitem" href="#Common-Survival-Distributions"><span>Common Survival Distributions</span></a></li></ul></li><li><a class="tocitem" href="../intervals/">Statistical Intervals</a></li></ul></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../../examples/basic-usage/">Basic Usage</a></li><li><a class="tocitem" href="../../examples/vectorized/">Vectorized Operations</a></li><li><a class="tocitem" href="../../examples/statistical-analysis/">Statistical Analysis</a></li><li><a class="tocitem" href="../../examples/bayesian/">Bayesian Inference</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">API Reference</a></li><li class="is-active"><a href>Survival Analysis</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Survival Analysis</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl/blob/master/docs/src/api/survival.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="survival-analysis"><a class="docs-heading-anchor" href="#survival-analysis">Survival Analysis</a><a id="survival-analysis-1"></a><a class="docs-heading-anchor-permalink" href="#survival-analysis" title="Permalink"></a></h1><p>UniDist.jl provides built-in functions for survival analysis, commonly used in reliability engineering, medical research, and actuarial science.</p><h2 id="Overview"><a class="docs-heading-anchor" href="#Overview">Overview</a><a id="Overview-1"></a><a class="docs-heading-anchor-permalink" href="#Overview" title="Permalink"></a></h2><p>Survival analysis deals with time-to-event data. The key functions are:</p><table><tr><th style="text-align: right">Function</th><th style="text-align: right">Formula</th><th style="text-align: right">Description</th></tr><tr><td style="text-align: right"><code>sf(d, x)</code></td><td style="text-align: right">S(x) = 1 - F(x)</td><td style="text-align: right">Survival function</td></tr><tr><td style="text-align: right"><code>hazard(d, x)</code></td><td style="text-align: right">h(x) = f(x) / S(x)</td><td style="text-align: right">Hazard function</td></tr><tr><td style="text-align: right"><code>cumhaz(d, x)</code></td><td style="text-align: right">H(x) = -log(S(x))</td><td style="text-align: right">Cumulative hazard</td></tr></table><p>where F(x) is the CDF and f(x) is the PDF.</p><hr/><h2 id="Survival-Function"><a class="docs-heading-anchor" href="#Survival-Function">Survival Function</a><a id="Survival-Function-1"></a><a class="docs-heading-anchor-permalink" href="#Survival-Function" title="Permalink"></a></h2><h3 id="sf-Survival-Function"><a class="docs-heading-anchor" href="#sf-Survival-Function"><code>sf</code> - Survival Function</a><a id="sf-Survival-Function-1"></a><a class="docs-heading-anchor-permalink" href="#sf-Survival-Function" title="Permalink"></a></h3><p>The survival function S(x) = P(X &gt; x) gives the probability of surviving beyond time x.</p><pre><code class="language-julia hljs">sf(dist, x)</code></pre><p><strong>Formula:</strong> <code>sf(d, x) = 1 - cdf(d, x)</code></p><p><strong>Examples:</strong></p><pre><code class="language-julia hljs"># Exponential lifetime with mean 10
+d = Exponential(10.0)
+
+sf(d, 5)              # ≈ 0.607 (probability of surviving past t=5)
+sf(d, 10)             # ≈ 0.368 (probability of surviving past t=10)
+sf(d, 20)             # ≈ 0.135
+
+# Verify: sf + cdf = 1
+sf(d, 5) + cdf(d, 5)  # 1.0</code></pre><p><strong>Interpretation:</strong></p><ul><li>sf(d, 0) = 1 (everyone alive at start)</li><li>sf(d, ∞) = 0 (eventually everyone fails)</li><li>Monotonically decreasing</li></ul><hr/><h2 id="Hazard-Function"><a class="docs-heading-anchor" href="#Hazard-Function">Hazard Function</a><a id="Hazard-Function-1"></a><a class="docs-heading-anchor-permalink" href="#Hazard-Function" title="Permalink"></a></h2><h3 id="hazard-Instantaneous-Failure-Rate"><a class="docs-heading-anchor" href="#hazard-Instantaneous-Failure-Rate"><code>hazard</code> - Instantaneous Failure Rate</a><a id="hazard-Instantaneous-Failure-Rate-1"></a><a class="docs-heading-anchor-permalink" href="#hazard-Instantaneous-Failure-Rate" title="Permalink"></a></h3><p>The hazard function h(x) represents the instantaneous failure rate at time x, given survival up to time x.</p><pre><code class="language-julia hljs">hazard(dist, x)</code></pre><p><strong>Formula:</strong> <code>hazard(d, x) = pdf(d, x) / sf(d, x)</code></p><p><strong>Examples:</strong></p><pre><code class="language-julia hljs"># Exponential: constant hazard (memoryless property)
+d = Exponential(10.0)
+hazard(d, 1)          # 0.1
+hazard(d, 5)          # 0.1
+hazard(d, 100)        # 0.1 (same at all times!)
+
+# Weibull: flexible hazard shapes
+# Shape &lt; 1: decreasing hazard (infant mortality)
+d1 = Weibull(0.5, 10)
+hazard(d1, 1)         # High
+hazard(d1, 10)        # Lower
+
+# Shape = 1: constant hazard (same as Exponential)
+d2 = Weibull(1.0, 10)
+hazard(d2, 1)         # Constant
+hazard(d2, 10)        # Same
+
+# Shape &gt; 1: increasing hazard (wear-out)
+d3 = Weibull(2.0, 10)
+hazard(d3, 1)         # Low
+hazard(d3, 10)        # Higher</code></pre><p><strong>Interpretation:</strong></p><ul><li>Units: failures per unit time</li><li>Can increase, decrease, or remain constant</li><li>Key for reliability modeling</li></ul><hr/><h2 id="Cumulative-Hazard-Function"><a class="docs-heading-anchor" href="#Cumulative-Hazard-Function">Cumulative Hazard Function</a><a id="Cumulative-Hazard-Function-1"></a><a class="docs-heading-anchor-permalink" href="#Cumulative-Hazard-Function" title="Permalink"></a></h2><h3 id="cumhaz-Cumulative-Hazard"><a class="docs-heading-anchor" href="#cumhaz-Cumulative-Hazard"><code>cumhaz</code> - Cumulative Hazard</a><a id="cumhaz-Cumulative-Hazard-1"></a><a class="docs-heading-anchor-permalink" href="#cumhaz-Cumulative-Hazard" title="Permalink"></a></h3><p>The cumulative hazard H(x) is the integral of the hazard function from 0 to x.</p><pre><code class="language-julia hljs">cumhaz(dist, x)</code></pre><p><strong>Formula:</strong> <code>cumhaz(d, x) = -log(sf(d, x))</code></p><p><strong>Examples:</strong></p><pre><code class="language-julia hljs">d = Exponential(10.0)
+
+cumhaz(d, 5)          # 0.5
+cumhaz(d, 10)         # 1.0
+cumhaz(d, 20)         # 2.0
+
+# Relationship with survival function
+exp(-cumhaz(d, 5))    # ≈ sf(d, 5)</code></pre><p><strong>Properties:</strong></p><ul><li>cumhaz(d, 0) = 0</li><li>Monotonically increasing</li><li>cumhaz(d, x) → ∞ as x → ∞</li></ul><hr/><h2 id="Practical-Applications"><a class="docs-heading-anchor" href="#Practical-Applications">Practical Applications</a><a id="Practical-Applications-1"></a><a class="docs-heading-anchor-permalink" href="#Practical-Applications" title="Permalink"></a></h2><h3 id="Reliability-Analysis"><a class="docs-heading-anchor" href="#Reliability-Analysis">Reliability Analysis</a><a id="Reliability-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Reliability-Analysis" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Component lifetime follows Weibull distribution
+# Shape = 2 indicates wear-out failure mode
+component = Weibull(2.0, 1000)  # Scale = 1000 hours
+
+# Probability of surviving 500 hours
+sf(component, 500)    # ≈ 0.779
+
+# Probability of failing between 500 and 1000 hours
+sf(component, 500) - sf(component, 1000)  # ≈ 0.411
+
+# Hazard rate at 500 hours
+hazard(component, 500)  # Instantaneous failure rate</code></pre><h3 id="Medical-Survival-Analysis"><a class="docs-heading-anchor" href="#Medical-Survival-Analysis">Medical Survival Analysis</a><a id="Medical-Survival-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Medical-Survival-Analysis" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Patient survival follows Exponential(median_survival)
+# If median survival is 24 months
+median_survival = 24
+d = Exponential(median_survival / log(2))
+
+# 1-year survival probability
+sf(d, 12)             # Probability of surviving 1 year
+
+# 5-year survival probability
+sf(d, 60)             # Probability of surviving 5 years
+
+# Median survival time
+quantile(d, 0.5)      # Time at which 50% have survived</code></pre><h3 id="Comparing-Distributions"><a class="docs-heading-anchor" href="#Comparing-Distributions">Comparing Distributions</a><a id="Comparing-Distributions-1"></a><a class="docs-heading-anchor-permalink" href="#Comparing-Distributions" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Compare hazard patterns
+exp_dist = Exponential(10)
+weibull_increasing = Weibull(2.0, 10)
+weibull_decreasing = Weibull(0.5, 10)
+
+times = [1, 5, 10, 15, 20]
+
+println(&quot;Time | Exponential | Weibull(2) | Weibull(0.5)&quot;)
+for t in times
+    h_exp = round(hazard(exp_dist, t), digits=4)
+    h_inc = round(hazard(weibull_increasing, t), digits=4)
+    h_dec = round(hazard(weibull_decreasing, t), digits=4)
+    println(&quot;$t    | $h_exp      | $h_inc     | $h_dec&quot;)
+end</code></pre><h3 id="Calculating-Expected-Remaining-Lifetime"><a class="docs-heading-anchor" href="#Calculating-Expected-Remaining-Lifetime">Calculating Expected Remaining Lifetime</a><a id="Calculating-Expected-Remaining-Lifetime-1"></a><a class="docs-heading-anchor-permalink" href="#Calculating-Expected-Remaining-Lifetime" title="Permalink"></a></h3><pre><code class="language-julia hljs"># Mean residual life at time t
+# E[X - t | X &gt; t]
+function mean_residual_life(d, t, upper=1000)
+    # Approximate by numerical integration
+    integrand(x) = sf(d, x) / sf(d, t)
+    # Integration from t to upper
+    # (simplified approximation)
+    dx = 0.1
+    xs = t:dx:upper
+    sum(sf(d, x) / sf(d, t) * dx for x in xs)
+end
+
+d = Exponential(10)
+mean_residual_life(d, 0)   # ≈ 10 (memoryless: same as original mean)
+mean_residual_life(d, 5)   # ≈ 10 (memoryless property!)</code></pre><hr/><h2 id="Vectorized-Operations"><a class="docs-heading-anchor" href="#Vectorized-Operations">Vectorized Operations</a><a id="Vectorized-Operations-1"></a><a class="docs-heading-anchor-permalink" href="#Vectorized-Operations" title="Permalink"></a></h2><p>All survival functions support vectorized operations:</p><pre><code class="language-julia hljs">d = Weibull(2.0, 100)
+times = [10, 25, 50, 75, 100, 150, 200]
+
+# Survival probabilities at multiple times
+sf(d, times)
+
+# Hazard rates at multiple times
+hazard(d, times)
+
+# Cumulative hazard at multiple times
+cumhaz(d, times)</code></pre><hr/><h2 id="Common-Survival-Distributions"><a class="docs-heading-anchor" href="#Common-Survival-Distributions">Common Survival Distributions</a><a id="Common-Survival-Distributions-1"></a><a class="docs-heading-anchor-permalink" href="#Common-Survival-Distributions" title="Permalink"></a></h2><table><tr><th style="text-align: right">Distribution</th><th style="text-align: right">Hazard Shape</th><th style="text-align: right">Use Case</th></tr><tr><td style="text-align: right">Exponential</td><td style="text-align: right">Constant</td><td style="text-align: right">Memoryless failures</td></tr><tr><td style="text-align: right">Weibull (β &lt; 1)</td><td style="text-align: right">Decreasing</td><td style="text-align: right">Infant mortality</td></tr><tr><td style="text-align: right">Weibull (β = 1)</td><td style="text-align: right">Constant</td><td style="text-align: right">Random failures</td></tr><tr><td style="text-align: right">Weibull (β &gt; 1)</td><td style="text-align: right">Increasing</td><td style="text-align: right">Wear-out failures</td></tr><tr><td style="text-align: right">LogNormal</td><td style="text-align: right">Non-monotonic</td><td style="text-align: right">Fatigue failures</td></tr><tr><td style="text-align: right">Gamma</td><td style="text-align: right">Flexible</td><td style="text-align: right">Repair times</td></tr><tr><td style="text-align: right">Gompertz</td><td style="text-align: right">Increasing</td><td style="text-align: right">Human mortality</td></tr></table></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../core/">« Core Functions</a><a class="docs-footer-nextpage" href="../intervals/">Statistical Intervals »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.16.1 on <span class="colophon-date" title="Wednesday 21 January 2026 23:32">Wednesday 21 January 2026</span>. Using Julia version 1.12.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Statistical Analysis · UniDist.jl</title><meta name="title" content="Statistical Analysis · UniDist.jl"/><meta property="og:title" content="Statistical Analysis · UniDist.jl"/><meta property="twitter:title" content="Statistical Analysis · UniDist.jl"/><meta name="description" content="Documentation for UniDist.jl."/><meta property="og:description" content="Documentation for UniDist.jl."/><meta property="twitter:description" content="Documentation for UniDist.jl."/><meta property="og:url" content="https://Akai01.github.io/UniDist.jl/examples/statistical-analysis/"/><meta property="twitter:url" content="https://Akai01.github.io/UniDist.jl/examples/statistical-analysis/"/><link rel="canonical" href="https://Akai01.github.io/UniDist.jl/examples/statistical-analysis/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">UniDist.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../getting-started/">Getting Started</a></li><li><span class="tocitem">Distributions</span><ul><li><a class="tocitem" href="../../distributions/continuous/">Continuous Distributions</a></li><li><a class="tocitem" href="../../distributions/discrete/">Discrete Distributions</a></li></ul></li><li><span class="tocitem">API Reference</span><ul><li><a class="tocitem" href="../../api/core/">Core Functions</a></li><li><a class="tocitem" href="../../api/survival/">Survival Analysis</a></li><li><a class="tocitem" href="../../api/intervals/">Statistical Intervals</a></li></ul></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../basic-usage/">Basic Usage</a></li><li><a class="tocitem" href="../vectorized/">Vectorized Operations</a></li><li class="is-active"><a class="tocitem" href>Statistical Analysis</a><ul class="internal"><li><a class="tocitem" href="#Hypothesis-Testing"><span>Hypothesis Testing</span></a></li><li><a class="tocitem" href="#Confidence-Intervals"><span>Confidence Intervals</span></a></li><li><a class="tocitem" href="#Power-Analysis"><span>Power Analysis</span></a></li><li><a class="tocitem" href="#Distribution-Fitting-Assessment"><span>Distribution Fitting Assessment</span></a></li><li><a class="tocitem" href="#Risk-Analysis"><span>Risk Analysis</span></a></li><li><a class="tocitem" href="#Quality-Control"><span>Quality Control</span></a></li><li><a class="tocitem" href="#Acceptance-Sampling"><span>Acceptance Sampling</span></a></li></ul></li><li><a class="tocitem" href="../bayesian/">Bayesian Inference</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Statistical Analysis</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Statistical Analysis</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/Akai01/UniDist.jl/blob/master/docs/src/examples/statistical-analysis.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="statistical-analysis"><a class="docs-heading-anchor" href="#statistical-analysis">Statistical Analysis</a><a id="statistical-analysis-1"></a><a class="docs-heading-anchor-permalink" href="#statistical-analysis" title="Permalink"></a></h1><p>This page demonstrates using UniDist.jl for common statistical analysis tasks.</p><h2 id="Hypothesis-Testing"><a class="docs-heading-anchor" href="#Hypothesis-Testing">Hypothesis Testing</a><a id="Hypothesis-Testing-1"></a><a class="docs-heading-anchor-permalink" href="#Hypothesis-Testing" title="Permalink"></a></h2><h3 id="One-Sample-Z-Test"><a class="docs-heading-anchor" href="#One-Sample-Z-Test">One-Sample Z-Test</a><a id="One-Sample-Z-Test-1"></a><a class="docs-heading-anchor-permalink" href="#One-Sample-Z-Test" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Test if sample mean differs from hypothesized value
+# H₀: μ = 100, H₁: μ ≠ 100
+
+sample_mean = 103.5
+sample_size = 50
+known_sd = 15
+hypothesized_mean = 100
+
+# Calculate z-statistic
+se = known_sd / sqrt(sample_size)
+z = (sample_mean - hypothesized_mean) / se
+
+# P-value (two-tailed)
+standard_normal = Normal(0, 1)
+p_value = 2 * (1 - cdf(standard_normal, abs(z)))
+
+println(&quot;Z-statistic: $(round(z, digits=3))&quot;)
+println(&quot;P-value: $(round(p_value, digits=4))&quot;)
+
+if p_value &lt; 0.05
+    println(&quot;Reject H₀ at α = 0.05&quot;)
+else
+    println(&quot;Fail to reject H₀ at α = 0.05&quot;)
+end</code></pre><h3 id="Chi-Square-Goodness-of-Fit"><a class="docs-heading-anchor" href="#Chi-Square-Goodness-of-Fit">Chi-Square Goodness of Fit</a><a id="Chi-Square-Goodness-of-Fit-1"></a><a class="docs-heading-anchor-permalink" href="#Chi-Square-Goodness-of-Fit" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Test if observed frequencies match expected
+observed = [45, 35, 20]  # Observed counts
+expected = [40, 40, 20]  # Expected counts
+
+# Chi-square statistic
+chi_sq = sum((o - e)^2 / e for (o, e) in zip(observed, expected))
+
+# Degrees of freedom = categories - 1
+df = length(observed) - 1
+
+# P-value
+chi_dist = ChiSquare(df)
+p_value = 1 - cdf(chi_dist, chi_sq)
+
+println(&quot;χ² statistic: $(round(chi_sq, digits=3))&quot;)
+println(&quot;Degrees of freedom: $df&quot;)
+println(&quot;P-value: $(round(p_value, digits=4))&quot;)</code></pre><h3 id="F-Test-for-Variance-Ratio"><a class="docs-heading-anchor" href="#F-Test-for-Variance-Ratio">F-Test for Variance Ratio</a><a id="F-Test-for-Variance-Ratio-1"></a><a class="docs-heading-anchor-permalink" href="#F-Test-for-Variance-Ratio" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Test if two populations have equal variances
+var1, n1 = 25.0, 30  # Sample 1: variance, size
+var2, n2 = 16.0, 25  # Sample 2: variance, size
+
+# F-statistic (larger variance in numerator)
+f_stat = var1 / var2
+
+# Degrees of freedom
+df1 = n1 - 1
+df2 = n2 - 1
+
+# P-value (two-tailed)
+f_dist = F(df1, df2)
+p_value = 2 * min(cdf(f_dist, f_stat), 1 - cdf(f_dist, f_stat))
+
+println(&quot;F-statistic: $(round(f_stat, digits=3))&quot;)
+println(&quot;P-value: $(round(p_value, digits=4))&quot;)</code></pre><hr/><h2 id="Confidence-Intervals"><a class="docs-heading-anchor" href="#Confidence-Intervals">Confidence Intervals</a><a id="Confidence-Intervals-1"></a><a class="docs-heading-anchor-permalink" href="#Confidence-Intervals" title="Permalink"></a></h2><h3 id="CI-for-Population-Mean-(Known-Variance)"><a class="docs-heading-anchor" href="#CI-for-Population-Mean-(Known-Variance)">CI for Population Mean (Known Variance)</a><a id="CI-for-Population-Mean-(Known-Variance)-1"></a><a class="docs-heading-anchor-permalink" href="#CI-for-Population-Mean-(Known-Variance)" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+sample_mean = 75.3
+known_sd = 10.0
+n = 40
+confidence = 0.95
+
+# Z critical value
+z_crit = quantile(Normal(0, 1), 1 - (1 - confidence) / 2)
+
+# Margin of error
+se = known_sd / sqrt(n)
+margin = z_crit * se
+
+# Confidence interval
+ci_lower = sample_mean - margin
+ci_upper = sample_mean + margin
+
+println(&quot;$(Int(confidence*100))% CI: [$(round(ci_lower, digits=2)), $(round(ci_upper, digits=2))]&quot;)</code></pre><h3 id="CI-for-Population-Proportion"><a class="docs-heading-anchor" href="#CI-for-Population-Proportion">CI for Population Proportion</a><a id="CI-for-Population-Proportion-1"></a><a class="docs-heading-anchor-permalink" href="#CI-for-Population-Proportion" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Survey: 120 out of 400 prefer option A
+successes = 120
+n = 400
+confidence = 0.95
+
+# Sample proportion
+p_hat = successes / n
+
+# Standard error
+se = sqrt(p_hat * (1 - p_hat) / n)
+
+# Z critical value
+z_crit = quantile(Normal(0, 1), 1 - (1 - confidence) / 2)
+
+# Confidence interval
+ci_lower = p_hat - z_crit * se
+ci_upper = p_hat + z_crit * se
+
+println(&quot;Sample proportion: $(round(p_hat, digits=3))&quot;)
+println(&quot;$(Int(confidence*100))% CI: [$(round(ci_lower, digits=3)), $(round(ci_upper, digits=3))]&quot;)</code></pre><hr/><h2 id="Power-Analysis"><a class="docs-heading-anchor" href="#Power-Analysis">Power Analysis</a><a id="Power-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Power-Analysis" title="Permalink"></a></h2><h3 id="Sample-Size-for-Desired-Power"><a class="docs-heading-anchor" href="#Sample-Size-for-Desired-Power">Sample Size for Desired Power</a><a id="Sample-Size-for-Desired-Power-1"></a><a class="docs-heading-anchor-permalink" href="#Sample-Size-for-Desired-Power" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Detect effect size d = 0.5 with 80% power at α = 0.05
+
+effect_size = 0.5
+alpha = 0.05
+power = 0.80
+
+# Critical values
+z_alpha = quantile(Normal(0, 1), 1 - alpha/2)  # Two-tailed
+z_beta = quantile(Normal(0, 1), power)
+
+# Required sample size per group (two-sample t-test approximation)
+n = 2 * ((z_alpha + z_beta) / effect_size)^2
+
+println(&quot;Required sample size per group: $(ceil(Int, n))&quot;)</code></pre><h3 id="Power-for-Given-Sample-Size"><a class="docs-heading-anchor" href="#Power-for-Given-Sample-Size">Power for Given Sample Size</a><a id="Power-for-Given-Sample-Size-1"></a><a class="docs-heading-anchor-permalink" href="#Power-for-Given-Sample-Size" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Calculate power for n=50 per group, effect size=0.4, α=0.05
+
+n = 50
+effect_size = 0.4
+alpha = 0.05
+
+# Non-centrality parameter
+ncp = effect_size * sqrt(n / 2)
+
+# Critical value under null
+z_crit = quantile(Normal(0, 1), 1 - alpha/2)
+
+# Power = P(reject H₀ | H₁ true)
+# Under alternative, test statistic ~ N(ncp, 1)
+alt_dist = Normal(ncp, 1)
+power = 1 - cdf(alt_dist, z_crit) + cdf(alt_dist, -z_crit)
+
+println(&quot;Power: $(round(power * 100, digits=1))%&quot;)</code></pre><hr/><h2 id="Distribution-Fitting-Assessment"><a class="docs-heading-anchor" href="#Distribution-Fitting-Assessment">Distribution Fitting Assessment</a><a id="Distribution-Fitting-Assessment-1"></a><a class="docs-heading-anchor-permalink" href="#Distribution-Fitting-Assessment" title="Permalink"></a></h2><h3 id="Q-Q-Plot-Data"><a class="docs-heading-anchor" href="#Q-Q-Plot-Data">Q-Q Plot Data</a><a id="Q-Q-Plot-Data-1"></a><a class="docs-heading-anchor-permalink" href="#Q-Q-Plot-Data" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Generate theoretical quantiles for Q-Q plot
+data = [2.3, 3.1, 3.5, 4.2, 4.8, 5.1, 5.9, 6.3, 7.1, 8.2]
+n = length(data)
+
+# Sort data
+sorted_data = sort(data)
+
+# Theoretical quantiles (standard normal)
+theoretical_dist = Normal(0, 1)
+probabilities = [(i - 0.5) / n for i in 1:n]
+theoretical_quantiles = quantile(theoretical_dist, probabilities)
+
+println(&quot;Data Quantile\tTheoretical Quantile&quot;)
+for (d, t) in zip(sorted_data, theoretical_quantiles)
+    println(&quot;$(round(d, digits=2))\t\t$(round(t, digits=2))&quot;)
+end</code></pre><h3 id="Probability-Plot-Correlation"><a class="docs-heading-anchor" href="#Probability-Plot-Correlation">Probability Plot Correlation</a><a id="Probability-Plot-Correlation-1"></a><a class="docs-heading-anchor-permalink" href="#Probability-Plot-Correlation" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Check if data follows exponential distribution
+data = [0.5, 0.8, 1.2, 1.5, 2.1, 2.8, 3.5, 4.2, 5.1, 7.3]
+n = length(data)
+
+# Fit exponential: estimate rate from data
+mean_data = sum(data) / n
+fitted_dist = Exponential(mean_data)
+
+# Theoretical quantiles
+sorted_data = sort(data)
+probs = [(i - 0.5) / n for i in 1:n]
+theoretical = quantile(fitted_dist, probs)
+
+# Correlation coefficient
+mean_sorted = sum(sorted_data) / n
+mean_theoretical = sum(theoretical) / n
+
+numerator = sum((sorted_data[i] - mean_sorted) * (theoretical[i] - mean_theoretical) for i in 1:n)
+denom_sorted = sqrt(sum((x - mean_sorted)^2 for x in sorted_data))
+denom_theoretical = sqrt(sum((x - mean_theoretical)^2 for x in theoretical))
+
+correlation = numerator / (denom_sorted * denom_theoretical)
+
+println(&quot;Probability plot correlation: $(round(correlation, digits=4))&quot;)
+println(&quot;(Values close to 1 suggest good fit)&quot;)</code></pre><hr/><h2 id="Risk-Analysis"><a class="docs-heading-anchor" href="#Risk-Analysis">Risk Analysis</a><a id="Risk-Analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Risk-Analysis" title="Permalink"></a></h2><h3 id="Value-at-Risk-(VaR)"><a class="docs-heading-anchor" href="#Value-at-Risk-(VaR)">Value at Risk (VaR)</a><a id="Value-at-Risk-(VaR)-1"></a><a class="docs-heading-anchor-permalink" href="#Value-at-Risk-(VaR)" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Portfolio returns assumed to follow Normal distribution
+# Mean daily return: 0.05%, Volatility: 2%
+daily_return = Normal(0.0005, 0.02)
+
+# VaR at different confidence levels
+println(&quot;Value at Risk (daily):&quot;)
+for conf in [0.90, 0.95, 0.99]
+    var = -quantile(daily_return, 1 - conf)
+    println(&quot;$(Int(conf*100))% VaR: $(round(var * 100, digits=2))%&quot;)
+end</code></pre><h3 id="Expected-Shortfall-(CVaR)"><a class="docs-heading-anchor" href="#Expected-Shortfall-(CVaR)">Expected Shortfall (CVaR)</a><a id="Expected-Shortfall-(CVaR)-1"></a><a class="docs-heading-anchor-permalink" href="#Expected-Shortfall-(CVaR)" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# For Normal distribution, ES has closed form
+μ = 0.0005
+σ = 0.02
+returns = Normal(μ, σ)
+
+alpha = 0.05  # 95% confidence
+
+# VaR
+var = -quantile(returns, alpha)
+
+# Expected Shortfall for Normal: ES = μ + σ * φ(Φ⁻¹(α)) / α
+# where φ is PDF and Φ⁻¹ is quantile of standard normal
+z_alpha = quantile(Normal(0, 1), alpha)
+es = -(μ - σ * pdf(Normal(0, 1), z_alpha) / alpha)
+
+println(&quot;95% VaR: $(round(var * 100, digits=2))%&quot;)
+println(&quot;95% ES (CVaR): $(round(es * 100, digits=2))%&quot;)</code></pre><hr/><h2 id="Quality-Control"><a class="docs-heading-anchor" href="#Quality-Control">Quality Control</a><a id="Quality-Control-1"></a><a class="docs-heading-anchor-permalink" href="#Quality-Control" title="Permalink"></a></h2><h3 id="Process-Capability"><a class="docs-heading-anchor" href="#Process-Capability">Process Capability</a><a id="Process-Capability-1"></a><a class="docs-heading-anchor-permalink" href="#Process-Capability" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Process specifications
+lsl = 95   # Lower specification limit
+usl = 105  # Upper specification limit
+
+# Process parameters (from sample)
+process_mean = 100.2
+process_sd = 1.5
+
+process = Normal(process_mean, process_sd)
+
+# Defect rates
+p_below_lsl = cdf(process, lsl)
+p_above_usl = 1 - cdf(process, usl)
+total_defect_rate = p_below_lsl + p_above_usl
+
+println(&quot;P(below LSL): $(round(p_below_lsl * 1e6, digits=1)) ppm&quot;)
+println(&quot;P(above USL): $(round(p_above_usl * 1e6, digits=1)) ppm&quot;)
+println(&quot;Total defect rate: $(round(total_defect_rate * 1e6, digits=1)) ppm&quot;)
+
+# Process capability indices
+cp = (usl - lsl) / (6 * process_sd)
+cpk = min(usl - process_mean, process_mean - lsl) / (3 * process_sd)
+
+println(&quot;\nCp: $(round(cp, digits=3))&quot;)
+println(&quot;Cpk: $(round(cpk, digits=3))&quot;)</code></pre><h3 id="Control-Chart-Limits"><a class="docs-heading-anchor" href="#Control-Chart-Limits">Control Chart Limits</a><a id="Control-Chart-Limits-1"></a><a class="docs-heading-anchor-permalink" href="#Control-Chart-Limits" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# X-bar chart for sample means
+# Process: μ = 50, σ = 5, sample size n = 4
+
+mu = 50
+sigma = 5
+n = 4
+
+# Distribution of sample means
+se = sigma / sqrt(n)
+xbar_dist = Normal(mu, se)
+
+# 3-sigma control limits
+lcl = quantile(xbar_dist, 0.00135)  # ≈ μ - 3σ/√n
+ucl = quantile(xbar_dist, 0.99865)  # ≈ μ + 3σ/√n
+
+println(&quot;Center Line: $mu&quot;)
+println(&quot;LCL: $(round(lcl, digits=2))&quot;)
+println(&quot;UCL: $(round(ucl, digits=2))&quot;)
+
+# Probability of false alarm (Type I error)
+p_false_alarm = 2 * cdf(xbar_dist, lcl)
+println(&quot;P(false alarm): $(round(p_false_alarm * 100, digits=3))%&quot;)</code></pre><hr/><h2 id="Acceptance-Sampling"><a class="docs-heading-anchor" href="#Acceptance-Sampling">Acceptance Sampling</a><a id="Acceptance-Sampling-1"></a><a class="docs-heading-anchor-permalink" href="#Acceptance-Sampling" title="Permalink"></a></h2><h3 id="Single-Sampling-Plan"><a class="docs-heading-anchor" href="#Single-Sampling-Plan">Single Sampling Plan</a><a id="Single-Sampling-Plan-1"></a><a class="docs-heading-anchor-permalink" href="#Single-Sampling-Plan" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# Lot size N = 1000, sample size n = 50, accept if defects ≤ c = 2
+# What is the probability of accepting a lot with 5% defective?
+
+n = 50
+c = 2
+p_defective = 0.05
+
+# Number of defectives in sample follows Binomial(n, p)
+defectives = Binomial(n, p_defective)
+
+# Probability of acceptance
+p_accept = cdf(defectives, c)
+
+println(&quot;Sampling plan: n=$n, c=$c&quot;)
+println(&quot;If lot is 5% defective:&quot;)
+println(&quot;P(accept) = $(round(p_accept * 100, digits=1))%&quot;)
+println(&quot;P(reject) = $(round((1 - p_accept) * 100, digits=1))%&quot;)</code></pre><h3 id="Operating-Characteristic-Curve"><a class="docs-heading-anchor" href="#Operating-Characteristic-Curve">Operating Characteristic Curve</a><a id="Operating-Characteristic-Curve-1"></a><a class="docs-heading-anchor-permalink" href="#Operating-Characteristic-Curve" title="Permalink"></a></h3><pre><code class="language-julia hljs">using UniDist
+
+# OC curve for sampling plan n=50, c=2
+n = 50
+c = 2
+
+println(&quot;Lot defect rate\tP(accept)&quot;)
+for p in [0.01, 0.02, 0.03, 0.05, 0.07, 0.10, 0.15]
+    defectives = Binomial(n, p)
+    p_accept = cdf(defectives, c)
+    println(&quot;$(Int(p*100))%\t\t$(round(p_accept * 100, digits=1))%&quot;)
+end</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../vectorized/">« Vectorized Operations</a><a class="docs-footer-nextpage" href="../bayesian/">Bayesian Inference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.16.1 on <span class="colophon-date" title="Wednesday 21 January 2026 23:32">Wednesday 21 January 2026</span>. Using Julia version 1.12.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
