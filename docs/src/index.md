@@ -34,14 +34,14 @@ hdi(d, 0.95)       # 95% highest density interval
 ## Documentation Structure
 
 - **[Getting Started](@ref getting-started)**: Installation and first steps
-- **[Distributions](@ref distributions)**: Complete list of supported distributions
+- **Distributions**: Complete list of supported distributions
   - [Continuous Distributions](@ref continuous-distributions)
   - [Discrete Distributions](@ref discrete-distributions)
-- **[API Reference](@ref api)**:
+- **API Reference**:
   - [Core Functions](@ref core-functions)
   - [Survival Analysis](@ref survival-analysis)
   - [Statistical Intervals](@ref statistical-intervals)
-- **[Examples](@ref examples)**: Real-world usage scenarios
+- **Examples**: Real-world usage scenarios
   - [Basic Usage](@ref basic-usage)
   - [Vectorized Operations](@ref vectorized-operations)
   - [Statistical Analysis](@ref statistical-analysis)

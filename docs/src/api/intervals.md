@@ -262,3 +262,12 @@ println("Actual coverage: $(round(coverage * 100, digits=1))%")
 - **Multimodal distributions:** HDI returns a single interval (min to max of high-density points), which may include low-density regions between modes
 - **Discrete distributions:** Require finite, enumerable support
 - **Numerical precision:** Continuous HDI depends on grid resolution
+
+---
+
+## API Reference
+
+```@docs
+UniDist.interval
+UniDist.hdi
+```

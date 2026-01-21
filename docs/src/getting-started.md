@@ -126,4 +126,4 @@ quantile(d, [0.025, 0.5, 0.975])
 - Explore the full list of [Continuous Distributions](@ref continuous-distributions) and [Discrete Distributions](@ref discrete-distributions)
 - Learn about [Survival Analysis](@ref survival-analysis) functions
 - See [Statistical Intervals](@ref statistical-intervals) for confidence intervals and HDI
-- Check out the [Examples](@ref examples) for real-world usage scenarios
+- Check out the [Basic Usage](@ref basic-usage) examples for real-world usage scenarios
