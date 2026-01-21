@@ -31,5 +31,5 @@ makedocs(
 
 deploydocs(
     repo = "github.com/Akai01/UniDist.jl.git",
-    devbranch = "main",
+    devbranch = "master",
 )
