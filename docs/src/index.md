@@ -1,5 +1,8 @@
 # UniDist.jl
 
+!!! warning "Experimental"
+    This package is experimental. The API may change without notice in future versions.
+
 **UniDist.jl** is a Julia package for working with univariate probability distributions. It provides a consistent, intuitive API for computing probability density functions, cumulative distribution functions, quantiles, random sampling, and more.
 
 ## Key Features

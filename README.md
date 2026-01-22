@@ -3,6 +3,8 @@
 [![CI](https://github.com/Akai01/UniDist.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/Akai01/UniDist.jl/actions/workflows/CI.yml)
 [![Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://Akai01.github.io/UniDist.jl/dev)
 
+> **Note:** This package is experimental. The API may change without notice in future versions.
+
 A Julia package for univariate probability distributions with vectorized parameter support.
 
 ## Installation
