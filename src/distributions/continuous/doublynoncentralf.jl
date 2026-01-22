@@ -31,7 +31,7 @@ pdf(d::DoublyNoncentralF, x) =
     broadcast((n1, n2, delta, gamma_param, x) -> _doubly_noncentral_f_pdf(n1, n2, delta, gamma_param, x), d.n1, d.n2, d.delta, d.gamma_param, x)
 
 function cdf(d::DoublyNoncentralF, x)
-    _warn_numeric("cdf", "DoublyNoncentralF")
+    _info_numeric("cdf", "DoublyNoncentralF")
     return broadcast(
         (n1, n2, delta, gamma_param, x) -> _continuous_cdf_scalar(t -> _doubly_noncentral_f_pdf(n1, n2, delta, gamma_param, t), 0.0, Inf, x),
         d.n1,
@@ -43,7 +43,7 @@ function cdf(d::DoublyNoncentralF, x)
 end
 
 function quantile(d::DoublyNoncentralF, u)
-    _warn_numeric("quantile", "DoublyNoncentralF")
+    _info_numeric("quantile", "DoublyNoncentralF")
     return broadcast(
         (n1, n2, delta, gamma_param, u) -> _continuous_quantile_scalar(t -> _doubly_noncentral_f_pdf(n1, n2, delta, gamma_param, t), 0.0, Inf, u),
         d.n1,

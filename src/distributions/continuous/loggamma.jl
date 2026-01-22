@@ -14,7 +14,7 @@ end
 pdf(d::LogGamma, x) = broadcast((alpha, beta, x) -> _loggamma_pdf(alpha, beta, x), d.alpha, d.beta, x)
 
 function cdf(d::LogGamma, x)
-    _warn_numeric("cdf", "LogGamma")
+    _info_numeric("cdf", "LogGamma")
     return broadcast(
         (alpha, beta, x) -> _continuous_cdf_scalar(t -> _loggamma_pdf(alpha, beta, t), -Inf, Inf, x),
         d.alpha,
@@ -24,7 +24,7 @@ function cdf(d::LogGamma, x)
 end
 
 function quantile(d::LogGamma, u)
-    _warn_numeric("quantile", "LogGamma")
+    _info_numeric("quantile", "LogGamma")
     return broadcast(
         (alpha, beta, u) -> _continuous_quantile_scalar(t -> _loggamma_pdf(alpha, beta, t), -Inf, Inf, u),
         d.alpha,

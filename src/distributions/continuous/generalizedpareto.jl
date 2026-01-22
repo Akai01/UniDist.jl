@@ -20,7 +20,7 @@ cdf(d::GeneralizedPareto, x) =
     broadcast((delta, kappa, gamma_param, x) -> x <= 0 ? 0.0 : 1 - exp(-gamma_param * x) * (1 + x / delta) ^ (-kappa), d.delta, d.kappa, d.gamma_param, x)
 
 function quantile(d::GeneralizedPareto, u)
-    _warn_numeric("quantile", "GeneralizedPareto")
+    _info_numeric("quantile", "GeneralizedPareto")
     return broadcast(
         (delta, kappa, gamma_param, u) -> _continuous_quantile_scalar(
             t -> _generalized_pareto_pdf(delta, kappa, gamma_param, t),

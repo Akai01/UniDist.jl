@@ -17,7 +17,7 @@ end
 pdf(d::InvertedGamma, x) = broadcast((alpha, beta, x) -> _inverted_gamma_pdf(alpha, beta, x), d.alpha, d.beta, x)
 
 function cdf(d::InvertedGamma, x)
-    _warn_numeric("cdf", "InvertedGamma")
+    _info_numeric("cdf", "InvertedGamma")
     return broadcast(
         (alpha, beta, x) -> _continuous_cdf_scalar(t -> _inverted_gamma_pdf(alpha, beta, t), 0.0, Inf, x),
         d.alpha,
@@ -27,7 +27,7 @@ function cdf(d::InvertedGamma, x)
 end
 
 function quantile(d::InvertedGamma, u)
-    _warn_numeric("quantile", "InvertedGamma")
+    _info_numeric("quantile", "InvertedGamma")
     return broadcast(
         (alpha, beta, u) -> _continuous_quantile_scalar(t -> _inverted_gamma_pdf(alpha, beta, t), 0.0, Inf, u),
         d.alpha,

@@ -25,7 +25,7 @@ end
 pdf(d::NoncentralF, x) = broadcast((n1, n2, delta, x) -> _noncentral_f_pdf(n1, n2, delta, x), d.n1, d.n2, d.delta, x)
 
 function cdf(d::NoncentralF, x)
-    _warn_numeric("cdf", "NoncentralF")
+    _info_numeric("cdf", "NoncentralF")
     return broadcast(
         (n1, n2, delta, x) -> _continuous_cdf_scalar(t -> _noncentral_f_pdf(n1, n2, delta, t), 0.0, Inf, x),
         d.n1,
@@ -36,7 +36,7 @@ function cdf(d::NoncentralF, x)
 end
 
 function quantile(d::NoncentralF, u)
-    _warn_numeric("quantile", "NoncentralF")
+    _info_numeric("quantile", "NoncentralF")
     return broadcast(
         (n1, n2, delta, u) -> _continuous_quantile_scalar(t -> _noncentral_f_pdf(n1, n2, delta, t), 0.0, Inf, u),
         d.n1,

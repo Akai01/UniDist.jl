@@ -79,6 +79,6 @@ function _continuous_quantile_scalar(
     return (lo + hi) / 2
 end
 
-function _warn_numeric(method::AbstractString, distname::AbstractString)
-    @warn("$method for $distname uses numerical integration/bisection")
+function _info_numeric(method::AbstractString, distname::AbstractString)
+    @info("$method for $distname uses numerical integration/bisection")
 end

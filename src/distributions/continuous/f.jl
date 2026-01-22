@@ -23,7 +23,7 @@ function cdf(d::F, x)
 end
 
 function quantile(d::F, u)
-    _warn_numeric("quantile", "F")
+    _info_numeric("quantile", "F")
     return broadcast((n1, n2, u) -> _continuous_quantile_scalar(t -> _f_pdf(n1, n2, t), 0.0, Inf, u), d.n1, d.n2, u)
 end
 

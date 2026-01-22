@@ -32,7 +32,7 @@ pdf(d::Hyperexponential, x) = broadcast(x -> _hyperexponential_pdf(d.alpha, d.p,
 cdf(d::Hyperexponential, x) = broadcast(x -> _hyperexponential_cdf(d.alpha, d.p, x), x)
 
 function quantile(d::Hyperexponential, u)
-    _warn_numeric("quantile", "Hyperexponential")
+    _info_numeric("quantile", "Hyperexponential")
     return broadcast(
         u -> _continuous_quantile_scalar(t -> _hyperexponential_pdf(d.alpha, d.p, t), 0.0, Inf, u),
         u,

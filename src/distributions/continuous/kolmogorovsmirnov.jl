@@ -51,20 +51,20 @@ function cdf(d::KolmogorovSmirnov, x)
         elseif n == 2
             _ks_cdf_n2(x)
         else
-            _warn_numeric("cdf", "KolmogorovSmirnov")
+            _info_numeric("cdf", "KolmogorovSmirnov")
             _ks_cdf_asymptotic(n, x)
         end
     end, d.n, x)
 end
 
 function pdf(d::KolmogorovSmirnov, x)
-    _warn_numeric("pdf", "KolmogorovSmirnov")
+    _info_numeric("pdf", "KolmogorovSmirnov")
     eps = 1e-6
     return broadcast((n, x) -> (cdf(KolmogorovSmirnov(n), x + eps) - cdf(KolmogorovSmirnov(n), x - eps)) / (2 * eps), d.n, x)
 end
 
 function quantile(d::KolmogorovSmirnov, u)
-    _warn_numeric("quantile", "KolmogorovSmirnov")
+    _info_numeric("quantile", "KolmogorovSmirnov")
     return broadcast(
         (n, u) -> _continuous_quantile_scalar(t -> pdf(KolmogorovSmirnov(n), t), 0.0, 1.0, u),
         d.n,

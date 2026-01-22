@@ -16,7 +16,7 @@ end
 pdf(d::Error, x) = broadcast((a, b, c, x) -> _error_pdf(a, b, c, x), d.a, d.b, d.c, x)
 
 function cdf(d::Error, x)
-    _warn_numeric("cdf", "Error")
+    _info_numeric("cdf", "Error")
     return broadcast(
         (a, b, c, x) -> _continuous_cdf_scalar(t -> _error_pdf(a, b, c, t), -Inf, Inf, x),
         d.a,
@@ -27,7 +27,7 @@ function cdf(d::Error, x)
 end
 
 function quantile(d::Error, u)
-    _warn_numeric("quantile", "Error")
+    _info_numeric("quantile", "Error")
     return broadcast(
         (a, b, c, u) -> _continuous_quantile_scalar(t -> _error_pdf(a, b, c, t), -Inf, Inf, u),
         d.a,

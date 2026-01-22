@@ -20,7 +20,7 @@ cdf(d::Makeham, x) =
     broadcast((delta, kappa, gamma_param, x) -> x <= 0 ? 0.0 : 1 - exp(-gamma_param * x - delta * (kappa ^ x - 1) / log(kappa)), d.delta, d.kappa, d.gamma_param, x)
 
 function quantile(d::Makeham, u)
-    _warn_numeric("quantile", "Makeham")
+    _info_numeric("quantile", "Makeham")
     return broadcast(
         (delta, kappa, gamma_param, u) -> _continuous_quantile_scalar(t -> _makeham_pdf(delta, kappa, gamma_param, t), 0.0, Inf, u),
         d.delta,

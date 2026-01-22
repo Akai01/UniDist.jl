@@ -18,7 +18,7 @@ end
 pdf(d::IDB, x) = broadcast((delta, kappa, gamma_param, x) -> _idb_pdf(delta, kappa, gamma_param, x), d.delta, d.kappa, d.gamma_param, x)
 
 function cdf(d::IDB, x)
-    _warn_numeric("cdf", "IDB")
+    _info_numeric("cdf", "IDB")
     return broadcast(
         (delta, kappa, gamma_param, x) -> _continuous_cdf_scalar(t -> _idb_pdf(delta, kappa, gamma_param, t), 0.0, Inf, x),
         d.delta,
@@ -29,7 +29,7 @@ function cdf(d::IDB, x)
 end
 
 function quantile(d::IDB, u)
-    _warn_numeric("quantile", "IDB")
+    _info_numeric("quantile", "IDB")
     return broadcast(
         (delta, kappa, gamma_param, u) -> _continuous_quantile_scalar(t -> _idb_pdf(delta, kappa, gamma_param, t), 0.0, Inf, u),
         d.delta,

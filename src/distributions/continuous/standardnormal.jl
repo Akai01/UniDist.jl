@@ -9,7 +9,7 @@ pdf(::StandardNormal, x) = @. exp(-0.5 * x ^ 2) / sqrt(2 * pi)
 cdf(::StandardNormal, x) = @. 0.5 * (1 + erf(x / sqrt(2)))
 
 function quantile(::StandardNormal, u)
-    _warn_numeric("quantile", "StandardNormal")
+    _info_numeric("quantile", "StandardNormal")
     return broadcast(u -> _continuous_quantile_scalar(t -> exp(-0.5 * t ^ 2) / sqrt(2 * pi), -Inf, Inf, u), u)
 end
 

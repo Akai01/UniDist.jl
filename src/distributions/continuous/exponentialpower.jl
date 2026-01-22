@@ -18,7 +18,7 @@ pdf(d::ExponentialPower, x) = broadcast((lambda, kappa, x) -> _exponential_power
 cdf(d::ExponentialPower, x) = broadcast((lambda, kappa, x) -> x <= 0 ? 0.0 : 1 - exp(1 - exp(lambda * x ^ kappa)), d.lambda, d.kappa, x)
 
 function quantile(d::ExponentialPower, u)
-    _warn_numeric("quantile", "ExponentialPower")
+    _info_numeric("quantile", "ExponentialPower")
     return broadcast(
         (lambda, kappa, u) -> _continuous_quantile_scalar(t -> _exponential_power_pdf(lambda, kappa, t), 0.0, Inf, u),
         d.lambda,

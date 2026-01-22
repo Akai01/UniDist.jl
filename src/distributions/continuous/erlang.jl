@@ -26,7 +26,7 @@ function cdf(d::Erlang, x)
 end
 
 function quantile(d::Erlang, u)
-    _warn_numeric("quantile", "Erlang")
+    _info_numeric("quantile", "Erlang")
     return broadcast(
         (alpha, n, u) -> _continuous_quantile_scalar(t -> _erlang_pdf(alpha, n, t), 0.0, Inf, u),
         d.alpha,

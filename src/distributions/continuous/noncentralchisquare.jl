@@ -23,7 +23,7 @@ end
 pdf(d::NoncentralChiSquare, x) = broadcast((delta, n, x) -> _noncentral_chisquare_pdf(delta, n, x), d.delta, d.n, x)
 
 function cdf(d::NoncentralChiSquare, x)
-    _warn_numeric("cdf", "NoncentralChiSquare")
+    _info_numeric("cdf", "NoncentralChiSquare")
     return broadcast(
         (delta, n, x) -> _continuous_cdf_scalar(t -> _noncentral_chisquare_pdf(delta, n, t), 0.0, Inf, x),
         d.delta,
@@ -33,7 +33,7 @@ function cdf(d::NoncentralChiSquare, x)
 end
 
 function quantile(d::NoncentralChiSquare, u)
-    _warn_numeric("quantile", "NoncentralChiSquare")
+    _info_numeric("quantile", "NoncentralChiSquare")
     return broadcast(
         (delta, n, u) -> _continuous_quantile_scalar(t -> _noncentral_chisquare_pdf(delta, n, t), 0.0, Inf, u),
         d.delta,

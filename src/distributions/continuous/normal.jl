@@ -16,7 +16,7 @@ pdf(d::Normal, x) = broadcast((mu, sigma, x) -> _normal_pdf(mu, sigma, x), d.mu,
 cdf(d::Normal, x) = broadcast((mu, sigma, x) -> 0.5 * (1 + erf((x - mu) / (sigma * sqrt(2)))), d.mu, d.sigma, x)
 
 function quantile(d::Normal, u)
-    _warn_numeric("quantile", "Normal")
+    _info_numeric("quantile", "Normal")
     return broadcast(
         (mu, sigma, u) -> _continuous_quantile_scalar(t -> _normal_pdf(mu, sigma, t), -Inf, Inf, u),
         d.mu,

@@ -15,7 +15,7 @@ end
 pdf(d::InverseGaussian, x) = broadcast((lambda, mu, x) -> _inverse_gaussian_pdf(lambda, mu, x), d.lambda, d.mu, x)
 
 function cdf(d::InverseGaussian, x)
-    _warn_numeric("cdf", "InverseGaussian")
+    _info_numeric("cdf", "InverseGaussian")
     return broadcast(
         (lambda, mu, x) -> _continuous_cdf_scalar(t -> _inverse_gaussian_pdf(lambda, mu, t), 0.0, Inf, x),
         d.lambda,
@@ -25,7 +25,7 @@ function cdf(d::InverseGaussian, x)
 end
 
 function quantile(d::InverseGaussian, u)
-    _warn_numeric("quantile", "InverseGaussian")
+    _info_numeric("quantile", "InverseGaussian")
     return broadcast(
         (lambda, mu, u) -> _continuous_quantile_scalar(t -> _inverse_gaussian_pdf(lambda, mu, t), 0.0, Inf, u),
         d.lambda,

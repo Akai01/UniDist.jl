@@ -17,7 +17,7 @@ end
 pdf(d::Beta, x) = broadcast((b, g, x) -> _beta_pdf(b, g, x), d.beta, d.gamma, x)
 
 function cdf(d::Beta, x)
-    _warn_numeric("cdf", "Beta")
+    _info_numeric("cdf", "Beta")
     return broadcast(
         (b, g, x) -> _continuous_cdf_scalar(t -> _beta_pdf(b, g, t), 0.0, 1.0, x),
         d.beta,
@@ -27,7 +27,7 @@ function cdf(d::Beta, x)
 end
 
 function quantile(d::Beta, u)
-    _warn_numeric("quantile", "Beta")
+    _info_numeric("quantile", "Beta")
     return broadcast(
         (b, g, u) -> _continuous_quantile_scalar(t -> _beta_pdf(b, g, t), 0.0, 1.0, u),
         d.beta,

@@ -17,7 +17,7 @@ end
 pdf(d::InvertedBeta, x) = broadcast((b, g, x) -> _inverted_beta_pdf(b, g, x), d.beta, d.gamma, x)
 
 function cdf(d::InvertedBeta, x)
-    _warn_numeric("cdf", "InvertedBeta")
+    _info_numeric("cdf", "InvertedBeta")
     return broadcast(
         (b, g, x) -> _continuous_cdf_scalar(t -> _inverted_beta_pdf(b, g, t), 0.0, Inf, x),
         d.beta,
@@ -27,7 +27,7 @@ function cdf(d::InvertedBeta, x)
 end
 
 function quantile(d::InvertedBeta, u)
-    _warn_numeric("quantile", "InvertedBeta")
+    _info_numeric("quantile", "InvertedBeta")
     return broadcast(
         (b, g, u) -> _continuous_quantile_scalar(t -> _inverted_beta_pdf(b, g, t), 0.0, Inf, u),
         d.beta,

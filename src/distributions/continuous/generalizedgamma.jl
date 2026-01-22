@@ -20,7 +20,7 @@ end
 pdf(d::GeneralizedGamma, x) = broadcast((alpha, beta, gamma_param, x) -> _generalized_gamma_pdf(alpha, beta, gamma_param, x), d.alpha, d.beta, d.gamma_param, x)
 
 function cdf(d::GeneralizedGamma, x)
-    _warn_numeric("cdf", "GeneralizedGamma")
+    _info_numeric("cdf", "GeneralizedGamma")
     return broadcast(
         (alpha, beta, gamma_param, x) -> _continuous_cdf_scalar(t -> _generalized_gamma_pdf(alpha, beta, gamma_param, t), 0.0, Inf, x),
         d.alpha,
@@ -31,7 +31,7 @@ function cdf(d::GeneralizedGamma, x)
 end
 
 function quantile(d::GeneralizedGamma, u)
-    _warn_numeric("quantile", "GeneralizedGamma")
+    _info_numeric("quantile", "GeneralizedGamma")
     return broadcast(
         (alpha, beta, gamma_param, u) -> _continuous_quantile_scalar(t -> _generalized_gamma_pdf(alpha, beta, gamma_param, t), 0.0, Inf, u),
         d.alpha,

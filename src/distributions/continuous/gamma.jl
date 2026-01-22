@@ -26,7 +26,7 @@ function cdf(d::Gamma, x)
 end
 
 function quantile(d::Gamma, u)
-    _warn_numeric("quantile", "Gamma")
+    _info_numeric("quantile", "Gamma")
     return broadcast(
         (alpha, beta, u) -> _continuous_quantile_scalar(t -> _gamma_pdf(alpha, beta, t), 0.0, Inf, u),
         d.alpha,

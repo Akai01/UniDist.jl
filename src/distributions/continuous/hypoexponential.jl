@@ -25,12 +25,12 @@ end
 pdf(d::Hypoexponential, x) = broadcast(x -> _hypoexponential_pdf(d.alpha, x), x)
 
 function cdf(d::Hypoexponential, x)
-    _warn_numeric("cdf", "Hypoexponential")
+    _info_numeric("cdf", "Hypoexponential")
     return broadcast(x -> _continuous_cdf_scalar(t -> _hypoexponential_pdf(d.alpha, t), 0.0, Inf, x), x)
 end
 
 function quantile(d::Hypoexponential, u)
-    _warn_numeric("quantile", "Hypoexponential")
+    _info_numeric("quantile", "Hypoexponential")
     return broadcast(u -> _continuous_quantile_scalar(t -> _hypoexponential_pdf(d.alpha, t), 0.0, Inf, u), u)
 end
 

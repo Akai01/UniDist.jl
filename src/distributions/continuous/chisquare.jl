@@ -20,7 +20,7 @@ function cdf(d::ChiSquare, x)
 end
 
 function quantile(d::ChiSquare, u)
-    _warn_numeric("quantile", "ChiSquare")
+    _info_numeric("quantile", "ChiSquare")
     return broadcast((n, u) -> _continuous_quantile_scalar(t -> _chisquare_pdf(n, t), 0.0, Inf, u), d.n, u)
 end
 

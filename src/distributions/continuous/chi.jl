@@ -16,12 +16,12 @@ end
 pdf(d::Chi, x) = broadcast((n, x) -> _chi_pdf(n, x), d.n, x)
 
 function cdf(d::Chi, x)
-    _warn_numeric("cdf", "Chi")
+    _info_numeric("cdf", "Chi")
     return broadcast((n, x) -> _continuous_cdf_scalar(t -> _chi_pdf(n, t), 0.0, Inf, x), d.n, x)
 end
 
 function quantile(d::Chi, u)
-    _warn_numeric("quantile", "Chi")
+    _info_numeric("quantile", "Chi")
     return broadcast((n, u) -> _continuous_quantile_scalar(t -> _chi_pdf(n, t), 0.0, Inf, u), d.n, u)
 end
 

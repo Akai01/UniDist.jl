@@ -17,7 +17,7 @@ pdf(d::Gompertz, x) = broadcast((delta, kappa, x) -> _gompertz_pdf(delta, kappa,
 cdf(d::Gompertz, x) = broadcast((delta, kappa, x) -> x <= 0 ? 0.0 : 1 - exp(-delta * (kappa ^ x - 1) / log(kappa)), d.delta, d.kappa, x)
 
 function quantile(d::Gompertz, u)
-    _warn_numeric("quantile", "Gompertz")
+    _info_numeric("quantile", "Gompertz")
     return broadcast(
         (delta, kappa, u) -> _continuous_quantile_scalar(t -> _gompertz_pdf(delta, kappa, t), 0.0, Inf, u),
         d.delta,

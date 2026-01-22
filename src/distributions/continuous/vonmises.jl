@@ -17,7 +17,7 @@ end
 pdf(d::VonMises, x) = broadcast((kappa, mu, x) -> _vonmises_pdf(kappa, mu, x), d.kappa, d.mu, x)
 
 function cdf(d::VonMises, x)
-    _warn_numeric("cdf", "VonMises")
+    _info_numeric("cdf", "VonMises")
     return broadcast(
         (kappa, mu, x) -> _continuous_cdf_scalar(t -> _vonmises_pdf(kappa, mu, t), 0.0, 2 * pi, x),
         d.kappa,
@@ -27,7 +27,7 @@ function cdf(d::VonMises, x)
 end
 
 function quantile(d::VonMises, u)
-    _warn_numeric("quantile", "VonMises")
+    _info_numeric("quantile", "VonMises")
     return broadcast(
         (kappa, mu, u) -> _continuous_quantile_scalar(t -> _vonmises_pdf(kappa, mu, t), 0.0, 2 * pi, u),
         d.kappa,
